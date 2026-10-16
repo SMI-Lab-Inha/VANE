@@ -8,6 +8,21 @@ All notable changes to VANE are recorded in this file. The format follows
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-16
+
+### Fixed
+
+- `LICENSE` is now the unmodified text of the Apache License, Version 2.0. The file
+  of 0.1.0 differed from it in the wording of sections 6 and 9 and of the appendix.
+  The copyright statement is in `NOTICE`.
+- `azimuth_tangent` sets the azimuth component of the tangent to exactly one, as
+  documented; on some platforms the normalisation rounded it to 0.9999999999999999.
+- The type annotations pass strict mypy with NumPy 2.2, the version installed on
+  Python 3.10, as well as with later NumPy versions.
+- A controller-library test no longer depends on the host platform.
+- The README names the linked project documents by their purpose, and its
+  documentation badge is served from shields.io.
+
 ## [0.1.0] - 2026-10-16
 
 Initial public release.
@@ -82,5 +97,6 @@ Initial public release.
   `examples/` (synthetic inputs, except the OpenFAST sweep), the theory, the API
   reference and contract, and the validation record.
 
-[Unreleased]: https://github.com/SMI-Lab-Inha/VANE/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/SMI-Lab-Inha/VANE/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/SMI-Lab-Inha/VANE/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/SMI-Lab-Inha/VANE/releases/tag/v0.1.0

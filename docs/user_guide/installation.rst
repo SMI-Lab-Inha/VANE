@@ -21,13 +21,13 @@ VANE is distributed through its GitHub repository,
 Install the release wheel
 -------------------------
 
-Download ``vane-0.1.0-py3-none-any.whl`` from the
-`v0.1.0 release <https://github.com/SMI-Lab-Inha/VANE/releases/tag/v0.1.0>`_, check it
+Download ``vane-0.1.1-py3-none-any.whl`` from the
+`v0.1.1 release <https://github.com/SMI-Lab-Inha/VANE/releases/tag/v0.1.1>`_, check it
 against ``SHA256SUMS.txt`` from the same page, and install it:
 
 .. code-block:: console
 
-   $ python -m pip install vane-0.1.0-py3-none-any.whl
+   $ python -m pip install vane-0.1.1-py3-none-any.whl
 
 Install from the repository
 ---------------------------
@@ -36,7 +36,7 @@ Install the tagged release directly from GitHub:
 
 .. code-block:: console
 
-   $ python -m pip install "git+https://github.com/SMI-Lab-Inha/VANE.git@v0.1.0"
+   $ python -m pip install "git+https://github.com/SMI-Lab-Inha/VANE.git@v0.1.1"
 
 or clone the repository and install it, in editable mode with the development tools
 for work on VANE itself:

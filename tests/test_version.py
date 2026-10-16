@@ -57,9 +57,9 @@ class TestVersionAgreement:
         """Each file states the same version as ``vane.__version__``."""
         assert _search(relative, pattern) == vane.__version__
 
-    def test_release_is_0_1_0_and_stable(self) -> None:
-        """The release is 0.1.0 and is classified as production/stable."""
-        assert vane.__version__ == "0.1.0"
+    def test_release_is_0_1_1_and_stable(self) -> None:
+        """The release is 0.1.1 and is classified as production/stable."""
+        assert vane.__version__ == "0.1.1"
         status = _search(
             "pyproject.toml", r'"Development Status :: (?P<version>[^"]+)"'
         )

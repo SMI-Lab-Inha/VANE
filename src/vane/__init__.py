@@ -18,7 +18,7 @@ from vane.study import (
 
 # The release version. ``pyproject.toml``, ``docs/conf.py``, ``CITATION.cff`` and
 # ``CHANGELOG.md`` carry the same number; ``tests/test_version.py`` checks this.
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 __all__ = [
     "Labeler",

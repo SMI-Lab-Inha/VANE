@@ -27,7 +27,7 @@ modal results:
 6. it exports state-space and linear parameter-varying (LPV) models for estimator and
    controller design.
 
-VANE handles fixed-bottom and floating turbines. The current stable release is v0.1.0.
+VANE handles fixed-bottom and floating turbines. The current stable release is v0.1.1.
 The public API is documented in the
 [API reference](https://vane.readthedocs.io/en/latest/reference/api_reference.html) and
 is stable. VANE follows semantic versioning: a breaking change to the documented public
@@ -50,17 +50,17 @@ API is made only with a new major version and is recorded in the
 ## Installation
 
 VANE needs Python 3.10 to 3.13 and is installed from GitHub. Either download the
-wheel attached to the [v0.1.0 release](https://github.com/SMI-Lab-Inha/VANE/releases/tag/v0.1.0)
+wheel attached to the [v0.1.1 release](https://github.com/SMI-Lab-Inha/VANE/releases/tag/v0.1.1)
 and install it:
 
 ```console
-python -m pip install vane-0.1.0-py3-none-any.whl
+python -m pip install vane-0.1.1-py3-none-any.whl
 ```
 
 or install the tagged release from the repository:
 
 ```console
-python -m pip install "git+https://github.com/SMI-Lab-Inha/VANE.git@v0.1.0"
+python -m pip install "git+https://github.com/SMI-Lab-Inha/VANE.git@v0.1.1"
 ```
 
 For development, clone the repository and install it in editable mode with
@@ -138,7 +138,7 @@ The package structure is described in the [architecture overview](ARCHITECTURE.m
 ## Citing
 
 If you use VANE in academic work, please cite the software release you used
-(VANE 0.1.0). The [citation file](CITATION.cff) holds the citation metadata (GitHub
+(VANE 0.1.1). The [citation file](CITATION.cff) holds the citation metadata (GitHub
 **Cite this repository**); BibTeX is on the manual's
 [How to cite](https://vane.readthedocs.io/en/latest/user_guide/citing.html) page.
 

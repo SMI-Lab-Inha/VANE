@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "vane"
-version = "0.1.0"
+version = "0.1.1"
 description = "OpenFAST linearization post-processing, physics-based mode identification, Campbell diagrams and state-space export for wind turbines"
 readme = "README.md"
 requires-python = ">=3.10"

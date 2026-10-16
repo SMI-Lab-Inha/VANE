@@ -118,6 +118,27 @@ Suggested topics: `wind-energy`, `wind-turbine`, `floating-offshore-wind`,
 `multi-blade-coordinate-transform`, `floquet`, `state-space`, `kalman-filter`,
 `digital-twin`, `python`.
 
+## Release record: 0.1.1
+
+0.1.1 replaces the licence file with the unmodified Apache License 2.0 text, sets the
+azimuth component of `azimuth_tangent` to exactly one, makes the type annotations pass
+strict mypy with NumPy 2.2 and makes one test independent of the host platform (see
+the changelog). The checks of sections 2 and 3 were run on the release tree on
+2026-10-16 on Windows 11 x64, in the environments listed for 0.1.0. Strict mypy was
+also run on Python 3.10 with NumPy 2.2.6 and mypy 2.4.0, the versions that the hosted
+type check installs. The hosted workflow (Ubuntu with Python 3.10 to 3.13, macOS and
+Windows with Python 3.13) passed on the release commit.
+
+| Check | Result |
+| --- | --- |
+| `ruff check src tests examples docs` | passed, no findings |
+| `ruff format --check src tests examples docs` | passed, 220 files formatted |
+| `mypy --strict src` | passed, no issues in 92 source files (NumPy 2.2.6 and 2.4.6) |
+| `pytest` on Python 3.10 to 3.13 | 3105 passed, 122 skipped on each; line coverage 95.14 to 95.15 % |
+| `sphinx-build -W --keep-going`, HTML and EPUB | built with no warnings |
+| `python -m build` | wheel `vane-0.1.1-py3-none-any.whl` and sdist `vane-0.1.1.tar.gz` built |
+| Clean-environment install | `import vane` and `vane --version` report 0.1.1 |
+
 ## Release record: 0.1.0
 
 The checks of sections 2 and 3 were run on the release tree on 2026-10-16, before the

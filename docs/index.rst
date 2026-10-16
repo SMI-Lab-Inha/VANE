@@ -26,7 +26,7 @@ turbine's operating curve to labelled Campbell diagrams and modal results:
 VANE handles fixed-bottom and floating turbines. It is developed at the Marine
 Structural Mechanics and Integrity Lab (SMI Lab), Inha University.
 
-The current stable release is 0.1.0. The public API is documented in the
+The current stable release is 0.1.1. The public API is documented in the
 :doc:`reference/api_reference` and is stable. VANE follows semantic versioning: a
 breaking change to the documented public API is made only with a new major version and
 is recorded in the :doc:`user_guide/changelog`.
