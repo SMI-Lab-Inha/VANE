@@ -647,7 +647,7 @@ def observability_scores(
             np.trace(_gramian_from_information(a, info_i, system.dt, horizon))
         )
 
-    per_mode = np.empty(0, dtype=np.float64)
+    per_mode: npt.NDArray[np.float64] = np.empty(0, dtype=np.float64)
     if mode_states is not None:
         information = _output_information(c, measurement_noise)
         gramian = _gramian_from_information(a, information, system.dt, horizon)

@@ -21,7 +21,7 @@ from __future__ import annotations
 import json
 import os
 from dataclasses import fields, is_dataclass
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import numpy as np
 
@@ -31,6 +31,9 @@ from vane.sysid.lpv import ScheduledFilterResult
 from vane.sysid.physical_lpv import LPVFamily
 from vane.sysid.rom_family import RomFamily
 from vane.sysid.state_space import StateSpace
+
+if TYPE_CHECKING:
+    import numpy.typing as npt
 
 __all__ = [
     "LPV_FAMILY_SCHEMA_VERSION",
@@ -170,7 +173,7 @@ def save_result(result: _Result, path: str | os.PathLike[str]) -> None:
     if type(result) not in (FilterResult, ScheduledFilterResult):
         msg = f"save_result does not handle {name}"
         raise TypeError(msg)
-    arrays: dict[str, np.ndarray] = {}
+    arrays: dict[str, npt.NDArray[Any]] = {}
     meta_fields: dict[str, Any] = {}
     for field in fields(result):
         value = getattr(result, field.name)
@@ -186,7 +189,7 @@ def save_result(result: _Result, path: str | os.PathLike[str]) -> None:
     }
     # Store the metadata as a 0-d string array so the archive is a single, pickle-free
     # npz (the arrays share the same file under their field names).
-    payload: dict[str, np.ndarray] = {"__meta__": np.asarray(json.dumps(meta))}
+    payload: dict[str, npt.NDArray[Any]] = {"__meta__": np.asarray(json.dumps(meta))}
     payload.update(arrays)
     # mypy reads a splatted dict as a possible ``allow_pickle=`` (bool) keyword; none of
     # our keys is that reserved name, so the arrays are all stored as named arrays. The
@@ -381,7 +384,7 @@ def save_rom_family(family: RomFamily, path: str | os.PathLike[str]) -> None:
     """
     _validate_rom_family(family)
     systems_meta: list[dict[str, Any]] = []
-    payload: dict[str, np.ndarray] = {
+    payload: dict[str, npt.NDArray[Any]] = {
         "operating_points": family.operating_points,
         "frequencies_hz": family.frequencies_hz,
         "damping_ratios": family.damping_ratios,
@@ -459,7 +462,7 @@ def load_rom_family(path: str | os.PathLike[str]) -> RomFamily:
                 raise ValueError(msg)
             prefix = f"system_{index:04d}_"
             required.add(prefix + "a")
-            matrices: dict[str, np.ndarray | None] = {}
+            matrices: dict[str, npt.NDArray[Any] | None] = {}
             for name in ("b", "c", "d"):
                 present = presence[name]
                 if not isinstance(present, bool):
@@ -635,7 +638,7 @@ def save_lpv_family(family: LPVFamily, path: str | os.PathLike[str]) -> None:
         layout (matrix shapes, names and sample time).
     """
     _validate_lpv_family(family)
-    payload: dict[str, np.ndarray] = {
+    payload: dict[str, npt.NDArray[Any]] = {
         "scheduling_points": family.scheduling_points,
         "dropped_coupling_a": family.dropped_coupling_a,
         "dropped_coupling_c": family.dropped_coupling_c,
@@ -719,7 +722,7 @@ def _load_lpv_system(
         msg = f"LPV-family system {index} has invalid matrix metadata"
         raise ValueError(msg)
     prefix = f"system_{index:04d}_"
-    matrices: dict[str, np.ndarray | None] = {}
+    matrices: dict[str, npt.NDArray[Any] | None] = {}
     for name in ("a", "b", "c", "d"):
         present = True if name == "a" else presence[name]
         if not isinstance(present, bool):

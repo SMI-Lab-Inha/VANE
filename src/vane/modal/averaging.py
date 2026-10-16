@@ -213,7 +213,7 @@ def interval_weights(azimuths: npt.ArrayLike) -> npt.NDArray[np.float64]:
         )
         raise ValueError(msg)
     sorted_weights = 0.5 * (np.roll(gaps, 1) + gaps) / _TWO_PI
-    weights = np.empty_like(sorted_weights)
+    weights: npt.NDArray[np.float64] = np.empty_like(sorted_weights)
     weights[order] = sorted_weights
     return weights
 

@@ -716,7 +716,7 @@ def _number_tower_modes(
     """
     frequencies = np.asarray(solution.natural_frequencies_hz, dtype=np.float64)
     eigenvalues = np.asarray(solution.eigenvalues, dtype=np.complex128)
-    flags = np.zeros(len(labels), dtype=np.bool_)
+    flags: npt.NDArray[np.bool_] = np.zeros(len(labels), dtype=np.bool_)
     if np.shape(solution.is_degenerate) == flags.shape:
         flags = np.asarray(solution.is_degenerate, dtype=np.bool_)
     if frequencies.shape != flags.shape or eigenvalues.shape != flags.shape:
@@ -1201,7 +1201,9 @@ def label_solution(
     mbc_coordinates = solution.dof_mbc_coordinates
     # A degenerate mode's eigenvector is an arbitrary rotation within its subspace,
     # so its multi-blade (whirl) type is not defined; it gets no suffix.
-    degenerate = np.zeros(solution.mode_shapes.shape[1], dtype=np.bool_)
+    degenerate: npt.NDArray[np.bool_] = np.zeros(
+        solution.mode_shapes.shape[1], dtype=np.bool_
+    )
     if np.shape(solution.is_degenerate) == degenerate.shape:
         degenerate = np.asarray(solution.is_degenerate, dtype=np.bool_)
     columns = [

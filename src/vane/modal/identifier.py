@@ -951,7 +951,9 @@ def _best_path(
     parent: list[npt.NDArray[np.int_]] = []
     for op in range(n_op):
         start = np.where(used[op], _NEG_INF, 0.0)
-        link_parent = np.full(used[op].shape[0], -1, dtype=np.int_)
+        link_parent: npt.NDArray[np.int_] = np.full(
+            used[op].shape[0], -1, dtype=np.int_
+        )
         if op > 0 and best[op - 1].size and start.size:
             candidate = best[op - 1][:, np.newaxis] + affinities[op - 1]
             from_prev = candidate.max(axis=0) if candidate.size else start

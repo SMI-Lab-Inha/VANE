@@ -341,7 +341,7 @@ def build_rom_family(
         if prev_residues is None:
             # Reference: track the top-n_modes (modal_reduction ranks by residue).
             order = list(range(n_modes))
-            mac_row = np.ones(n_modes, dtype=np.float64)
+            mac_row: npt.NDArray[np.float64] = np.ones(n_modes, dtype=np.float64)
         else:
             # Match ALL previously tracked modes jointly against the FULL candidate
             # set by output-residue MAC with the frequency tie-breaker, so a tracked
@@ -710,7 +710,7 @@ def _transfer_eligible(
     n_modes = system.n_states // 2
     c_modal = c[:, 0::2] - 1j * c[:, 1::2]  # (n_outputs, n_modes)
     b_modal = b[0::2] + 1j * b[1::2]  # (n_modes, n_inputs)
-    scores = np.zeros(n_modes, dtype=np.float64)
+    scores: npt.NDArray[np.float64] = np.zeros(n_modes, dtype=np.float64)
     for output, input_channel in pairs:
         row = _resolve_output(system, output)
         column = _resolve_input(system, input_channel)

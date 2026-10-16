@@ -12,7 +12,7 @@ state has a consistent meaning around the full revolution.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 import numpy as np
 
@@ -131,7 +131,7 @@ class PeriodicStateSpace:
 
 
 def _shape(matrix: npt.NDArray[np.float64] | None) -> tuple[int, int] | None:
-    return None if matrix is None else matrix.shape
+    return None if matrix is None else cast("tuple[int, int]", matrix.shape)
 
 
 def _blend(

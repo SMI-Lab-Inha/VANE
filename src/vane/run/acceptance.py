@@ -611,7 +611,9 @@ def _component_indices(
     return tuple(indices)
 
 
-def _values(files: Sequence[LinFile], indices: tuple[int, ...]) -> np.ndarray:
+def _values(
+    files: Sequence[LinFile], indices: tuple[int, ...]
+) -> npt.NDArray[np.float64]:
     """Stack the selected state operating-point values by azimuth."""
     if not indices:
         return np.empty((len(files), 0), dtype=np.float64)
@@ -622,7 +624,7 @@ def _values(files: Sequence[LinFile], indices: tuple[int, ...]) -> np.ndarray:
 
 
 def _vector_metrics(
-    values: np.ndarray,
+    values: npt.NDArray[np.float64],
     weights: npt.NDArray[np.float64],
 ) -> tuple[tuple[float, ...] | None, float | None, float | None]:
     """Return component mean, norm of that mean, and maximum instantaneous norm."""

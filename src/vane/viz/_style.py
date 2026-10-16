@@ -270,7 +270,7 @@ def plot_style() -> Iterator[None]:
     ...     fig, ax = plt.subplots()
     ...     lines = ax.plot([0.0, 1.0], [0.0, 1.0])
     """
-    with mpl.rc_context(rc=style_rc()):
+    with mpl.rc_context(rc=cast("dict[Any, Any]", style_rc())):
         yield
 
 
@@ -316,7 +316,7 @@ def apply_style(target: Figure | Axes | go.Figure | None = None) -> None:
         If ``target`` is none of the supported types.
     """
     if target is None:
-        mpl.rcParams.update(style_rc())
+        mpl.rcParams.update(cast("dict[Any, Any]", style_rc()))
     elif isinstance(target, go.Figure):
         target.update_layout(template=resolve_template(None))
     elif isinstance(target, Figure):
@@ -352,7 +352,7 @@ def static_style(
             else:
                 stack.enter_context(matplotlib.style.context(style))
         if size is not None:
-            stack.enter_context(mpl.rc_context(rc=size.rc()))
+            stack.enter_context(mpl.rc_context(rc=cast("dict[Any, Any]", size.rc())))
         yield
 
 
@@ -521,7 +521,7 @@ def operating_range_label(parameter_name: str) -> str:
 
 def rc_points(key: str) -> float:
     """Return a font-size ``rcParams`` entry in points (``"medium"`` is resolved)."""
-    return float(FontProperties(size=mpl.rcParams[key]).get_size())
+    return float(FontProperties(size=mpl.rcParams[cast("Any", key)]).get_size())
 
 
 def text_color(color: str, shade: float = 0.8) -> str:

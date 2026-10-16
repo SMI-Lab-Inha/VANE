@@ -248,7 +248,9 @@ def frequency_response(
     b = system.b[:, inputs]
     c = system.c[outputs]
     if system.d is None:
-        d = np.zeros((len(outputs), len(inputs)), dtype=np.float64)
+        d: npt.NDArray[np.float64] = np.zeros(
+            (len(outputs), len(inputs)), dtype=np.float64
+        )
     else:
         d = system.d[np.ix_(outputs, inputs)]
     identity = np.eye(system.n_states)

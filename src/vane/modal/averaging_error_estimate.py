@@ -1571,7 +1571,7 @@ def azimuth_count_table(
     basis = eigen_basis(model.mean)
     labels = _resolve_branches(basis, branches)
     tails: dict[str, AliasTail] = {}
-    scale = max(float(np.linalg.norm(model.mean)), np.finfo(np.float64).tiny)
+    scale = max(float(np.linalg.norm(model.mean)), float(np.finfo(np.float64).tiny))
     if extrapolate:
         for label, j in labels.items():
             orders, sensitivity = _sensitivities(model, basis, j, b)

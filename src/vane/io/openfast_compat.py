@@ -502,7 +502,7 @@ def _unique_index(names: list[str], requested: str) -> int:
     return matches[0]
 
 
-def _require_zero(values: np.ndarray, atol: float, label: str) -> None:
+def _require_zero(values: npt.NDArray[np.float64], atol: float, label: str) -> None:
     if not np.all(np.abs(values) <= atol):
         maximum = float(np.max(np.abs(values)))
         msg = f"{label} is not zero within atol={atol:g} (max={maximum:g})"

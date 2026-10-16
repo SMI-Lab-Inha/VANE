@@ -375,7 +375,8 @@ def _dropped_coupling(
     chosen = set(x_idx)
     dropped = [j for j in range(a.shape[0]) if j not in chosen]
     a_ratio, a_cols = _relative_block_norms(a[list(x_idx), :], dropped)
-    c_ratio, c_cols = 0.0, np.zeros(len(dropped), dtype=np.float64)
+    c_ratio = 0.0
+    c_cols: npt.NDArray[np.float64] = np.zeros(len(dropped), dtype=np.float64)
     if c is not None and y_idx:
         c_ratio, c_cols = _relative_block_norms(c[list(y_idx), :], dropped)
     shares = np.maximum(a_cols, c_cols)

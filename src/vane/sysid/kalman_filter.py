@@ -96,7 +96,7 @@ class FilterResult:
 
 def _as_available(
     available: npt.NDArray[np.bool_] | None, n_outputs: int
-) -> np.ndarray:
+) -> npt.NDArray[np.bool_]:
     """Return a boolean output mask of length ``n_outputs`` (all-True if ``None``)."""
     if available is None:
         return np.ones(n_outputs, dtype=bool)
@@ -242,7 +242,7 @@ class KalmanFilter:
         self.state_names = list(model.state_names)
         n = self.a.shape[0]
         if initial_state is None:
-            self.x = np.zeros(n, dtype=np.float64)
+            self.x: npt.NDArray[np.float64] = np.zeros(n, dtype=np.float64)
         else:
             self.x = np.asarray(initial_state, dtype=np.float64).ravel()
             if self.x.shape != (n,):
@@ -648,7 +648,7 @@ class SteadyStateKalmanFilter:
             )
             raise ValueError(msg)
         if initial_state is None:
-            self.x = np.zeros(n, dtype=np.float64)
+            self.x: npt.NDArray[np.float64] = np.zeros(n, dtype=np.float64)
         else:
             self.x = np.asarray(initial_state, dtype=np.float64).ravel()
             if self.x.shape != (n,):

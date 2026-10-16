@@ -151,7 +151,10 @@ def _fourier_coefficients(
     coeffs: dict[int, npt.NDArray[np.complex128]] = {}
     for n in range(-n_max, n_max + 1):
         phase = np.exp(-1j * n * angles)
-        coeffs[n] = np.tensordot(phase, matrices, axes=(0, 0)) / n_azimuth
+        coeffs[n] = np.asarray(
+            np.tensordot(phase, matrices, axes=(0, 0)) / n_azimuth,
+            dtype=np.complex128,
+        )
     return coeffs
 
 

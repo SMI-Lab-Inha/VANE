@@ -62,7 +62,7 @@ def _heatmap_data(
     if min_normalized <= 0.0:
         # The documented escape hatch: keep every mode, including any that are
         # completely dormant (zero contribution to every load).
-        keep = np.arange(matrix.shape[1])
+        keep: npt.NDArray[np.intp] = np.arange(matrix.shape[1])
     else:
         keep = np.flatnonzero(matrix.max(axis=0) > min_normalized)
         if keep.size == 0:
