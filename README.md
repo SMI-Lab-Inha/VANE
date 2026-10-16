@@ -4,7 +4,7 @@
 
 [![Release](https://img.shields.io/github/v/release/SMI-Lab-Inha/VANE?sort=semver)](https://github.com/SMI-Lab-Inha/VANE/releases/latest)
 [![CI](https://github.com/SMI-Lab-Inha/VANE/actions/workflows/python.yml/badge.svg)](https://github.com/SMI-Lab-Inha/VANE/actions/workflows/python.yml)
-[![Documentation](https://readthedocs.org/projects/vane/badge/?version=latest)](https://vane.readthedocs.io/en/latest/)
+[![Documentation](https://img.shields.io/readthedocs/vane/latest?label=docs)](https://vane.readthedocs.io/en/latest/)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Python 3.10–3.13](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg)](pyproject.toml)
 
