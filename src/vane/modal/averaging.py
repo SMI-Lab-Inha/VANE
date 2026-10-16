@@ -957,7 +957,10 @@ def azimuth_tangent(
             stacklevel=2,
         )
     vector = basis.right[:, index] / basis.right[position, index]
-    return np.asarray(vector.real, dtype=np.float64)
+    tangent = np.array(vector.real, dtype=np.float64)
+    # z / z need not round to exactly one on every platform.
+    tangent[position] = 1.0
+    return tangent
 
 
 def pin_azimuth(
