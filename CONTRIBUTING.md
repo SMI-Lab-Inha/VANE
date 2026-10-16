@@ -57,15 +57,15 @@ is not available; VALIDATION.md lists the environment variables that enable them
 
 ## Pull requests
 
-`main` holds the released code and the work for the next release.
+`main` holds the released code, and `dev` the work for the next release.
 
-1. Fork the repository and branch from `main` with a descriptive name
+1. Fork the repository and branch from `dev` with a descriptive name
    (`fix/<topic>`, `feature/<topic>`, `docs/<topic>`).
 2. Keep each pull request to one change. Add or update tests for it.
 3. Run `pre-commit run --all-files` and the checks above.
-4. Open the pull request against `main` and complete the template.
+4. Open the pull request against `dev` and complete the template.
 5. CI must pass and a maintainer must approve before merge. Pull requests are
-   squash-merged.
+   squash-merged into `dev`.
 
 Write commit messages as plain sentences in the imperative mood: a subject of at most
 72 characters that says what the change does, and a body that explains why it is

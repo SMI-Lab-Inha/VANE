@@ -3,7 +3,9 @@
 # VANE release procedure
 
 This procedure is for maintainers. It turns one reviewed commit into a VANE release.
-Run it from a clean checkout of the release commit. Tags have the form
+Work for a release collects on `dev`; the release commit is made on `dev`, and `main`
+is then fast-forwarded to it, so that the two branches share the same commits. Run
+the procedure from a clean checkout of the release commit. Tags have the form
 `vMAJOR.MINOR.PATCH`. VANE follows semantic versioning: a breaking change to the
 documented public API is made only with a new major version and is recorded in the
 changelog.
@@ -64,9 +66,10 @@ On Windows, `Get-FileHash <file> -Algorithm SHA256` gives the same digests.
 
 ## 4. Tag and publish
 
-Tag only the commit that passed every check:
+Tag only the commit that passed every check. Fast-forward `main` to it first:
 
 ```console
+git push origin dev:main
 git tag -s vMAJOR.MINOR.PATCH -m "VANE MAJOR.MINOR.PATCH"
 git push origin vMAJOR.MINOR.PATCH
 ```
@@ -101,8 +104,8 @@ Before the first release is published from a new GitHub repository:
       [SECURITY.md](SECURITY.md)) and secret scanning.
 - [ ] **Actions**: allow GitHub-hosted runners; the workflow needs no secrets and only
       read access to the repository contents.
-- [ ] **Branch protection** on `main`: require pull requests, the `python` workflow
-      checks and linear history.
+- [ ] **Branch protection** on `main` and `dev`: require pull requests, the `python`
+      workflow checks and linear history, and forbid force pushes and deletion.
 - [ ] **Read the Docs**: import the repository as project `vane`, build `latest` and
       the release tag, and check the badge in the README.
 - [ ] **Citation**: confirm that **Cite this repository** renders from `CITATION.cff`.
