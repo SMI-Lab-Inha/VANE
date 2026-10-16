@@ -1,0 +1,37 @@
+# SPDX-License-Identifier: Apache-2.0
+# Enforce LF line endings for all text files on every platform, so that
+# `ruff format --check` does not flag files checked out on Windows with
+# core.autocrlf=true. All tracked text is UTF-8.
+
+* text=auto eol=lf
+
+*.py        text eol=lf
+*.pyi       text eol=lf
+*.toml      text eol=lf
+*.yaml      text eol=lf
+*.yml       text eol=lf
+*.md        text eol=lf
+*.rst       text eol=lf
+*.cff       text eol=lf
+*.txt       text eol=lf
+*.cfg       text eol=lf
+*.ini       text eol=lf
+*.in        text eol=lf
+LICENSE     text eol=lf
+NOTICE      text eol=lf
+
+# Windows command scripts require CRLF.
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+
+# Binary formats
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.svg       text eol=lf
+*.npz       binary
+*.npy       binary
+*.mat       binary
+*.pdf       binary
+*.zip       binary

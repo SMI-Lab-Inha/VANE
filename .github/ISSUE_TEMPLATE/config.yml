@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: Apache-2.0
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://vane.readthedocs.io
+    about: Installation, the quick start, the linearization sweep, the theory, and the API reference.
+  - name: Security vulnerability
+    url: https://github.com/SMI-Lab-Inha/VANE/security/advisories/new
+    about: Report security issues privately, never in a public issue.

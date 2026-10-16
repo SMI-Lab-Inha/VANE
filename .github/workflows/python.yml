@@ -1,0 +1,124 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Jae Hoon Seo, SMI Lab, Inha University
+name: python
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: python-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint and type check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # Type-check on the oldest supported Python, the target of mypy's configuration.
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.10'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install the package and development tools
+        run: python -m pip install --upgrade pip ".[dev]"
+      - name: Ruff
+        run: |
+          python -m ruff check src tests examples docs
+          python -m ruff format --check src tests examples docs
+      - name: Mypy (strict)
+        run: python -m mypy src
+
+  test:
+    name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
+    needs: lint
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ['3.10', '3.11', '3.12', '3.13']
+        include:
+          - os: windows-latest
+            python-version: '3.13'
+          - os: macos-latest
+            python-version: '3.13'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install the package and test dependencies
+        run: python -m pip install --upgrade pip ".[dev]"
+      - name: Run the tests with the coverage check
+        # Coverage settings (source, fail-under 85 %) live in pyproject.toml. Tests that
+        # need OpenFAST or local reference data skip on hosted runners.
+        run: python -m pytest -q -n auto --cov-report=xml
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always() && matrix.os == 'ubuntu-latest' && matrix.python-version == '3.13'
+        with:
+          name: vane-coverage
+          path: coverage.xml
+          if-no-files-found: ignore
+
+  distribution:
+    name: Build Python distributions
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - run: python -m pip install --upgrade pip build
+      - name: Build reproducible distributions
+        shell: bash
+        run: |
+          export SOURCE_DATE_EPOCH="$(git log -1 --format=%ct)"
+          python -m build --outdir dist
+      - name: Install and inspect the wheel in a clean environment
+        shell: bash
+        run: |
+          python -m venv wheel-test
+          wheel-test/bin/python -m pip install dist/*.whl
+          wheel-test/bin/python -c "import vane; print(vane.__version__)"
+          wheel-test/bin/vane --version
+          wheel-test/bin/vane --help
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: vane-python-distributions
+          path: dist/*
+          if-no-files-found: error
+
+  documentation:
+    name: Sphinx documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: docs/requirements.txt
+      - name: Install the package and the documentation dependencies
+        run: python -m pip install --upgrade pip -r docs/requirements.txt .
+      - name: Build documentation with warnings as errors
+        run: sphinx-build -W --keep-going -b html docs docs/_build/html

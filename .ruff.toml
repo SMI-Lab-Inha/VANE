@@ -1,0 +1,44 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright (c) 2026 Jae Hoon Seo, SMI Lab, Inha University
+line-length = 88
+target-version = "py310"
+
+[lint]
+select = [
+    "E", "W",   # pycodestyle
+    "F",        # pyflakes
+    "I",        # isort
+    "N",        # pep8-naming
+    "D",        # pydocstyle
+    "UP",       # pyupgrade
+    "ANN",      # type annotations
+    "SIM",      # simplification
+    "TCH",      # type-checking imports
+    "RUF",      # ruff-specific
+    "B",        # bugbear
+    "C4",       # comprehensions
+    "PTH",      # pathlib over os.path
+    "PERF",     # perflint (comprehensions over append loops, try outside loops)
+    "FURB",     # refurb (modern idioms)
+    "PIE",      # flake8-pie (unnecessary constructs)
+    "RET",      # flake8-return (return-flow simplification)
+    "FLY",      # flynt (str.join -> f-string)
+    "LOG",      # flake8-logging (correct logging usage)
+    "SLOT",     # flake8-slots
+    "EM",       # flake8-errmsg (no string literals in raise)
+    "TRY",      # tryceratops (exception-handling idioms)
+    "PLW",      # pylint warnings
+]
+# D203/D212: conflicting docstring conventions. TRY003: long messages in raise are
+# clear and idiomatic here (already assigned to a variable via EM), not worth custom
+# exception classes. ISC is intentionally not selected: it conflicts with the
+# formatter's multi-line implicit string concatenation style.
+ignore = ["D203", "D212", "TRY003"]
+
+[lint.pydocstyle]
+convention = "numpy"
+
+[format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true

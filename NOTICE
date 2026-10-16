@@ -1,0 +1,38 @@
+VANE (Visualization and Automated Natural-frequency Extraction)
+Copyright (c) 2026 Jae Hoon Seo, SMI Lab, Inha University
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+It was developed at the Marine Structural Mechanics and Integrity Lab (SMI Lab),
+Department of Naval Architecture and Ocean Engineering, Inha University, Incheon,
+Republic of Korea.
+
+-------------------------------------------------------------------------------
+Name
+-------------------------------------------------------------------------------
+
+"VANE" identifies the official project maintained by SMI Lab, Inha University,
+at https://github.com/SMI-Lab-Inha/VANE. As Section 6 of the Apache License,
+Version 2.0 provides, the licence grants no permission to use the name except
+to describe the origin of the work. Modified versions may say that they are
+based on VANE, but may not use the name in a way that implies they are the
+official VANE or endorsed by its maintainers.
+
+-------------------------------------------------------------------------------
+Third-party material
+-------------------------------------------------------------------------------
+
+OpenFAST (Apache License, Version 2.0)
+  https://github.com/OpenFAST/openfast
+
+  VANE reads the linearization files and input decks of OpenFAST and runs the
+  OpenFAST executable as a separate program. No OpenFAST source code is
+  included in VANE. The multi-blade coordinate transform and the input-file
+  conventions are independent implementations from the published equations
+  and the OpenFAST documentation.
+
+Contributor Covenant 2.1 (Creative Commons Attribution 4.0 International)
+  https://www.contributor-covenant.org/version/2/1/code_of_conduct.html
+
+  CODE_OF_CONDUCT.md reproduces the Contributor Covenant, version 2.1, by
+  Coraline Ada Ehmke and contributors, with the project contact added.

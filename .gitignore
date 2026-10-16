@@ -1,0 +1,64 @@
+# SPDX-License-Identifier: Apache-2.0
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+.Python
+*.egg-info/
+.eggs/
+build/
+dist/
+wheel-test/
+
+# Virtual environments
+.env
+.venv/
+env/
+venv/
+
+# Test, type-check and lint caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Sphinx documentation build output
+docs/_build/
+docs/generated/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editors and operating systems
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# OpenFAST input and output data are never committed: tests generate synthetic
+# linearizations, and reference decks are read from local clones named by
+# environment variables.
+*.lin
+*.outb
+*.out
+*.sum
+*.chkp
+*.vtk
+
+# Documents and literature
+*.pdf
+*.docx
+*.xlsx
+*.pptx
+
+# Temporary files
+*.tmp
+*.bak
+*.log

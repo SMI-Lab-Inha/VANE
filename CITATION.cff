@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: Apache-2.0
+cff-version: 1.2.0
+message: >-
+  If you use VANE in academic work, please cite this software entry with the
+  version you used.
+title: "VANE: Visualization and Automated Natural-frequency Extraction"
+type: software
+abstract: >-
+  VANE is an open-source Python package for the linearized dynamics of wind
+  turbines modelled in OpenFAST. It runs OpenFAST linearization sweeps over a
+  turbine's operating curve, applies the multi-blade coordinate transform,
+  identifies and labels the modes from their physical participation, tracks
+  them across operating points into Campbell diagrams with resonance
+  crossings, estimates the error of the azimuth-averaged model, and exports
+  state-space and linear parameter-varying models for estimator and
+  controller design, for fixed-bottom and floating turbines.
+authors:
+  - family-names: Seo
+    given-names: Jae Hoon
+    email: jaehoon.seo@inha.ac.kr
+    affiliation: "Department of Naval Architecture and Ocean Engineering, Inha University, Incheon, Republic of Korea"
+    orcid: "https://orcid.org/0000-0003-1047-2119"
+repository-code: "https://github.com/SMI-Lab-Inha/VANE"
+url: "https://github.com/SMI-Lab-Inha/VANE"
+license: Apache-2.0
+version: 0.1.0
+date-released: 2026-10-16
+keywords:
+  - wind turbine
+  - floating offshore wind
+  - OpenFAST
+  - linearization
+  - modal analysis
+  - mode identification
+  - Campbell diagram
+  - multi-blade coordinate transform
+  - Floquet analysis
+  - state space

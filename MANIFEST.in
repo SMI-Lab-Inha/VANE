@@ -1,0 +1,18 @@
+# SPDX-License-Identifier: Apache-2.0
+# The wheel ships the importable package. The sdist also carries the project
+# metadata, licence and notice files, and the tests and documentation sources.
+include LICENSE NOTICE CITATION.cff
+include README.md CHANGELOG.md CONTRIBUTING.md CODE_OF_CONDUCT.md SECURITY.md SUPPORT.md
+include ARCHITECTURE.md VALIDATION.md RELEASE.md
+include pyproject.toml .ruff.toml
+include src/vane/py.typed
+recursive-include tests *.py
+recursive-include docs *.rst *.py *.txt *.png
+recursive-include examples *.py *.md *.csv
+prune docs/_build
+
+# Never ship byte-compiled or cache files.
+global-exclude *.py[cod]
+prune **/__pycache__
+prune **/.mypy_cache
+prune **/.pytest_cache
