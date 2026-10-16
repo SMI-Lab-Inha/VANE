@@ -1103,7 +1103,10 @@ class TestSettleControllerLibrary:
         """Without an override ServoDyn is only read, so it may stay shared."""
         from vane.run import auto_sweep as auto_module
         from vane.run import driver as driver_module
+        from vane.run import floating_auto as floating_module
 
+        # The deck names a ``.dll``; make it a host library on every test platform.
+        monkeypatch.setattr(floating_module, "_host_library_suffix", lambda: ".dll")
         shared = tmp_path / "shared"
         shared.mkdir()
         servo = _SERVO_DLL.replace(
