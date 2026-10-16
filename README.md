@@ -32,7 +32,7 @@ The public API is documented in the
 [API reference](https://vane.readthedocs.io/en/latest/reference/api_reference.html) and
 is stable. VANE follows semantic versioning: a breaking change to the documented public
 API is made only with a new major version and is recorded in the
-[CHANGELOG](CHANGELOG.md).
+[changelog](CHANGELOG.md).
 
 ## Capabilities
 
@@ -111,7 +111,7 @@ vane study path/to/lin_files --parameter wind -o study_output
 The manual at <https://vane.readthedocs.io> covers installation, the quick start, the
 OpenFAST linearization sweep, mode identification, Campbell diagrams, state-space
 export, azimuth averaging, step-by-step tutorials, the theory, the validation record,
-and the API reference. The tutorial scripts are in [`examples/`](examples/README.md);
+and the API reference. The tutorial scripts are in the [examples folder](examples/README.md);
 all but the OpenFAST sweep run on synthetic inputs without OpenFAST.
 
 ## Validation
@@ -120,7 +120,8 @@ VANE is verified against analytical solutions, exact invariants and prescribed-m
 models, and has been run end to end on the OpenFAST `r-test` reference systems (NREL
 5 MW on land, OC3 monopile, OC3 Hywind spar, OC4 DeepCwind semi-submersible) and on
 the NREL 5 MW and IEA 3.4, 10, 15 and 22 MW reference turbines. Cases, acceptance
-values and the tests that reproduce them are in [VALIDATION.md](VALIDATION.md).
+values and the tests that reproduce them are in the
+[validation record](VALIDATION.md).
 
 ## Repository layout
 
@@ -132,23 +133,23 @@ values and the tests that reproduce them are in [VALIDATION.md](VALIDATION.md).
 | `examples/` | Runnable tutorial scripts |
 | `.github/` | Continuous integration, issue and pull-request templates |
 
-The package structure is described in [ARCHITECTURE.md](ARCHITECTURE.md).
+The package structure is described in the [architecture overview](ARCHITECTURE.md).
 
 ## Citing
 
 If you use VANE in academic work, please cite the software release you used
-(VANE 0.1.0). [CITATION.cff](CITATION.cff) holds the citation metadata (GitHub **Cite
-this repository**); BibTeX is on the manual's
+(VANE 0.1.0). The [citation file](CITATION.cff) holds the citation metadata (GitHub
+**Cite this repository**); BibTeX is on the manual's
 [How to cite](https://vane.readthedocs.io/en/latest/user_guide/citing.html) page.
 
 ## Contributing and support
 
 Questions, bug reports and feature requests are welcome in
 [GitHub Issues](https://github.com/SMI-Lab-Inha/VANE/issues); see
-[SUPPORT.md](SUPPORT.md) for where each belongs. Read
-[CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. Everyone taking part
+the [support guide](SUPPORT.md) for where each belongs. Read the
+[contributing guide](CONTRIBUTING.md) before opening a pull request. Everyone taking part
 is expected to follow the [Code of Conduct](CODE_OF_CONDUCT.md). Report security
-issues privately as described in [SECURITY.md](SECURITY.md).
+issues privately as described in the [security policy](SECURITY.md).
 
 VANE is research software. Users are responsible for model selection, convergence
 checks and the engineering decisions they base on its results.
